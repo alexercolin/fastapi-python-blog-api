@@ -76,6 +76,20 @@ def updateBlogById(id, request: schemas.Blog, db: Session = Depends(get_db)):
 # USERS
 
 
+@app.get('/user', response_model=List[schemas.Users])
+def getAllUsers(db: Session = Depends(get_db)):
+    users = db.query(models.User).all()
+    return users
+
+@app.get('/user/{id}',status_code=status.HTTP_200_OK, response_model=schemas.Users)
+def getUserById(id: int, db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.id == id).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'User with the id {id} is not available')
+
+    return user
+
 @app.post('/user', status_code=status.HTTP_201_CREATED)
 def createUser(request: schemas.User, db: Session = Depends(get_db)):
     new_user = models.User(
