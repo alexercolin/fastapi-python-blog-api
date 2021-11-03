@@ -4,6 +4,8 @@ from .database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from pprint import pprint
 from typing import List
+from .hashing import Hash
+
 
 app = FastAPI()
 
@@ -17,6 +19,8 @@ def get_db():
     finally:
         db.close()
 
+# BLOGS
+
 
 @app.post('/blog', status_code=status.HTTP_201_CREATED)
 def create(request: schemas.Blog, db: Session = Depends(get_db)):
@@ -27,7 +31,7 @@ def create(request: schemas.Blog, db: Session = Depends(get_db)):
     return new_blog
 
 
-@app.get('/blog',response_model=List[schemas.ShowBlog])
+@app.get('/blog', response_model=List[schemas.ShowBlog])
 def getAllBlogs(db: Session = Depends(get_db)):
     blogs = db.query(models.Blog).all()
     return blogs
@@ -69,13 +73,18 @@ def updateBlogById(id, request: schemas.Blog, db: Session = Depends(get_db)):
     db.commit()
     return'done'
 
+# USERS
+
+
 @app.post('/user', status_code=status.HTTP_201_CREATED)
 def createUser(request: schemas.User, db: Session = Depends(get_db)):
-    new_user = models.User(name=request.name, email=request.email, password=request.password)
+    new_user = models.User(
+        name=request.name, email=request.email, password=Hash.bcrypt(request.password))
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     return new_user
+
 
 @app.delete('/user/{id}', status_code=status.HTTP_204_NO_CONTENT)
 def deleteUser(id: int, response: Response, db: Session = Depends(get_db)):
