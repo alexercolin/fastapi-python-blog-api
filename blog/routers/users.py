@@ -17,7 +17,7 @@ def get_all(db: Session = Depends(database.get_db)):
 
 @router.get('/{id}', status_code=status.HTTP_200_OK, response_model=schemas.Users)
 def get_by_id(id: int, db: Session = Depends(database.get_db)):
-    return users.get_by_id(id,response,db)
+    return users.get_by_id(id,db)
 
 
 @router.post('/', status_code=status.HTTP_201_CREATED)

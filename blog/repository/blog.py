@@ -36,7 +36,7 @@ def delete(id: int, response: Response, db: Session = Depends(database.get_db)):
     return'done'
 
 
-def updateBlogById(id, request: schemas.Blog, db: Session = Depends(database.get_db)):
+def update(id, request: schemas.Blog, db: Session = Depends(database.get_db)):
     blog = db.query(models.Blog).filter(models.Blog.id == id)
 
     if not blog.first():
