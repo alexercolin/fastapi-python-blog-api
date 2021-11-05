@@ -1,4 +1,3 @@
-API built with FastAPI + SQLalch
 
 <h1 align="center">
     API built with FastAPI + SQLAlchemy
