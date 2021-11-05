@@ -7,28 +7,28 @@
 This project was built with python using the framework FastAPI, you can create, read, update and delete blogs and users from the database SQLAlchemy. The password from the user will bem saved hashed by the bcrypt tool and to some requests you need the JWT authentication.
 
 Folders Structure created by me =D
-.
-├── app
-│   ├── __init__.py
-│   ├── main.py
-│   ├── requirements.txt
-│   └── routers
-│   │   ├── __init__.py
-│   │   ├── blog.py
-│   │   ├── authentication.py
-│   │   └── users.py
-│   └── repository
-│   │   ├── blog.py
-│   │   └── users.py
-│   └── db
-│   │    ├── database.py
-│   └── core
-│   │   ├── models
-│   │   └── schemas
-│   └── auth
-│   │   ├── hashing.py
-│   │   └── oauth2.py
-│   │   └── token.py
+
+├── app<br>
+│   ├── __init__.py<br>
+│   ├── main.py<br>
+│   ├── requirements.txt<br>
+│   └── routers<br>
+│   │   ├── __init__.py<br>
+│   │   ├── blog.py<br>
+│   │   ├── authentication.py<br>
+│   │   └── users.py<br>
+│   └── repository<br>
+│   │   ├── blog.py<br>
+│   │   └── users.py<br>
+│   └── db<br>
+│   │    ├── database.py<br>
+│   └── core<br>
+│   │   ├── models<br>
+│   │   └── schemas<br>
+│   └── auth<br>
+│   │   ├── hashing.py<br>
+│   │   └── oauth2.py<br>
+│   │   └── token.py<br>
 
 
 
