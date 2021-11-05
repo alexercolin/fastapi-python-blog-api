@@ -1,7 +1,7 @@
-from .database import Base
+from ...db import database
 from sqlalchemy import Column, Integer, String
 
-
+Base = database.Base
 class Blog(Base):
     __tablename__ = 'blogs'
     id = Column(Integer, primary_key=True, index=True)

@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, status, Response, HTTPException
 from sqlalchemy.orm import Session
-from .. import schemas, database, models
-from ..hashing import Hash
+from ..core.models import  models
+from ..core.schemas import schemas
+from ..db import  database
 
 
 def get_all(db: Session = Depends(database.get_db)):

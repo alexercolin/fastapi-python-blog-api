@@ -1,9 +1,13 @@
 from fastapi import APIRouter, Depends, status, Response, HTTPException
-from .. import schemas, database, models
+from ..core.models import  models
+from ..core.schemas import schemas
 from typing import List
+from ..db import database
 from sqlalchemy.orm import Session
 from ..repository import users
-from ..hashing import Hash
+from ..auth import hashing
+
+Hash = hashing.Hash
 
 
 def get_all(db: Session = Depends(database.get_db)):
