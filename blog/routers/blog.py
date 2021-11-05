@@ -12,12 +12,12 @@ router = APIRouter(
 
 
 @router.get('/', response_model=List[schemas.ShowBlog])
-def get_all(db: Session = Depends(database.get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+def get(db: Session = Depends(database.get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
     return blog.get_all(db)
 
 
 @router.get('/{id}', status_code=status.HTTP_200_OK, response_model=schemas.ShowBlog)
-def get_by_id(id: int, response: Response, db: Session = Depends(database.get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+def get(id: int, response: Response, db: Session = Depends(database.get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
     return blog.get_by_id(id, response, db)
 
 
